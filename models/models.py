@@ -4,6 +4,7 @@ from odoo import models, fields, api
 
 class CarRequest(models.Model):
     _name = "car.request"
+    _inherit = ['mail.thread']
     _description = "Car Request"
 
     name = fields.Char(string="Request", required=True, )
@@ -21,6 +22,7 @@ class CarRequest(models.Model):
             ('approve', 'Approved'),
         ],
         default="draft",
+        track_visibility='onchange',
     )
 
     @api.multi
